@@ -1,0 +1,30 @@
+<html> 
+	<head> 
+		<title>Ride with uber</title>
+		<style>
+		p {color: black;} </style>
+	</head>
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="uberhelper.js"></script>
+	<script type="text/javascript">
+		
+	$.ajaxSetup({
+		  error: function(xhr, status, error) {
+		    alert("An AJAX error occured: " + status + "\nError: " + error);
+		  }
+		});
+
+	$(document).ready(function() {
+	  
+		uber.uberButton('uberDiv',null,'2201 6th Ave Seattle WA');
+	});
+	</script>
+	<body>
+		<p>The div element below will be replaced with the Uber Button/p>
+		<div id='uberDiv'>
+			<button type="button" id="rideUber" >Continue</button>'
+			<p>blank div</p>
+		</div>
+	</body>
+
+</html>
