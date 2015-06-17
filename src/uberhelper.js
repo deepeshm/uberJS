@@ -33,6 +33,15 @@ var uber = (function ($) {
 		initialize();
 	 });
 	
+	makeRequest = function(url, params){
+		var result;
+		$.get(url,params,function( data ) {
+			result = data;
+			
+  		});
+		return result;
+	};
+	
 	// Uber Button
 	my.uberButton = function(buttonDiv,dropOffCoordinates,dropOffAddress)
 	{
@@ -74,25 +83,71 @@ var uber = (function ($) {
 	// Uber Products
 	my.getProductInfo = function(coordinates){
 	var url = uberUrl +"v1/products";
-	var result;
+	
 	var parameters = {
 		    'server_token': serverToken,
 		    'latitude': currentLatitude,
-		    'longitude': currentLongitude,
+		    'longitude': currentLongitude
 		};
-		$.get(url,parameters,function( data ) {
-			result = data;
-  		}).done(function() {
-    		
-  		})
-  		.fail(function(error) {
-    		
-  		})
-  		.always(function() {
-  		});
-		return result;
+		return makeRequest(url,parameters);
 	};
 	
+	//Uber price estimates
+	my.getPriceEstimates = function (endCoordinates){
+	 var url = "/v1/estimates/price";
+
+	 var parameters = {
+		    'start_latitude': currentLatitude,
+		    'start_longitude': currentLongitude,
+			'end_latitude': endCoordinates.latitude,
+		    'end_longitude': endCoordinates.longitude
+		};
+	 	return makeRequest(url,parameters);
+		
+		
+	};
+		
+	//Uber time estimates
+	my.getTimeEstimates = function (){
+	 var url = "/v1/estimates/time";
+
+	 var parameters = {
+		
+		    'start_latitude': currentLatitude,
+		    'start_longitude': currentLongitude,
+		};
+		return makeRequest(url,parameters);
+	};
+
+	//Uber promotions
+	my.getPromotions = function (endCoordinates){
+	 var url = "/v1/promotions";
+
+	 var parameters = {
+		
+		    'start_latitude': currentLatitude,
+		    'start_longitude': currentLongitude,
+			'end_latitude': endCoordinates.latitude,
+		    'end_longitude': endCoordinates.longitude
+		};
+		
+		return makeRequest(url,parameters);
+	};
+
+	//Uber user activity
+	my.getUserActivity = function (){
+	 var url = "/v1.2/history";
+	 
+	 return makeRequest(url);
+	};
+	
+	//uber user profile
+	my.getUserProfile = function (){
+	 var url = "/v1/me";
+	 
+	 return makeRequest(url);
+	};
+	//Uber login
 	my.init = function(redirectUri){
         var session;
 		if ($.cookie('access_token') === undefined)
@@ -120,7 +175,6 @@ var uber = (function ($) {
 	};
 	
 
-	
 	
     exchangeCodeForToken = function (code) {
         var redirect = $.cookie('redirectUrl');
