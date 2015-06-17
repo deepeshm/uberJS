@@ -13,7 +13,7 @@ To see a working sample, clone the repo and run Index.html from the src director
 	<script src="uberhelper.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
-		uber.uberButton('uberDiv',null,'2201 6th Ave Seattle WA');
+		uber.uberButton('uberDiv',null,'800 Occidental Ave S, Seattle, WA');
 	});
 	</script>
 	<body>
