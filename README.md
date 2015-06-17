@@ -1,8 +1,8 @@
 # uberJS
 Uber JS is a Uber button that lets developers add a uber button that deep links into the uber application with the starting coordinates.
 To use this, just load the uberhelper library and place the uberhelper.js and the rideWithUber.png in the same directory. 
-https://github.com/deepeshm/uberJS/new/master?readme=1#fullscreen
-To see a working sample, clone the repo and run Index.html from the src directory.
+
+To see a working sample, clone the repo and run index.html from the src directory.
 
 ```html
 <html> 
